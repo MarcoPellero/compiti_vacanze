@@ -248,4 +248,114 @@ float es43(float nums[], int size) {
 	return max - min;
 }
 
+void es44(int nums[], int size) {
+	/* In un vettore sono memorizzati i movimenti di denaro su un conto corrente. I
+	 * valori positivi indicano i versamenti di denaro, mentre i valori negativi indicano
+	 * i prelievi. Contare i numeri di prelievi e versamenti e indicare se i prelievi
+	 * superano o meno i versamenti. Verificare inoltre se il conto corrente risulta in
+	 * rosso.
+	*/
+
+	int positive = 0, negative = 0, sum = 0;
+	for (int i = 0; i < size; i++) {
+		sum += nums[i];
+
+		if (nums[i] > 0)
+			positive++;
+		else if (nums[i] < 0)
+			negative++;
+	}
+	
+	if (positive > negative)
+		printf("Piu' versamenti che prelievi\n");
+	else if (negative > positive)
+		printf("Piu' prelievi che versamenti\n");
+	else
+		printf("Tanti versamenti quanti prelievi\n");
+	
+	printf("Soldi rimasti sul conto: %d\n", sum);
+}
+
+int es45(int nums[], int size) {
+	/* Dopo aver caricato un vettore di N componenti numeriche, sommare solo le
+	* componenti di indice dispari.
+	*/
+
+	int sum = 0;
+	for (int i = 1; i < size; i += 2)
+		sum += nums[i];
+	
+	return sum;
+}
+
+void es46(int nums[], int size) {
+	/* Dopo aver caricato un vettore di M elementi, calcolare il valore e la posizione del
+	 * massimo e il valore e la posizione del minimo.
+	*/
+
+	int max = 0, min = 0;
+	for (int i = 1; i < size; i++) {
+		if (nums[i] > nums[max])
+			max = i;
+		if (nums[i] < nums[min])
+			min = i;
+	}
+
+	printf("Massimo: indice %d e valore %d\n", max, nums[max]);
+	printf("Minimo: indice %d e valore %d\n", min, nums[min]);
+}
+
+void es47(int nums[], int size) {
+	/* Dopo aver caricato un vettore di N componenti numeriche, visualizzarli in
+	 * ordine inverso.
+	*/
+
+	for (int i = size-1; i >= 0; i--)
+		printf("[%d] : %d\n", i, nums[i]);
+}
+
+void es48(int nums[], int size) {
+	/* Dato un vettore di N elementi, costruire un altro vettore che contiene solo i
+	 * numeri pari.
+	*/
+
+	int evenNums[size];
+	int occupied = 0;
+
+	for (int i = 0; i < size; i++)
+		if (nums[i] ^ 1)
+			evenNums[occupied++] = nums[i];
+	
+	for (int i = 0; i < occupied; i++)
+		printf("[%d] : %d\n", i, evenNums[i]);
+}
+
+void es49(int a[], int b[], int size) {
+	/* Dati due array A e B di N interi scrivere un programma per costruire un vettore
+	 * C ( di dimensione 2N) che contenga nelle prime N posizioni gli elementi del
+	 * vettore A e nelle restanti posizioni N gli elementi di B.
+	*/
+
+	int c[size*2];
+
+	for (int i = 0; i < size; i++) {
+		c[i] = a[i];
+		c[size+i] = b[i];
+	}
+
+	for (int i = 0; i < size*2; i++)
+		printf("[%d] : %d\n", i, c[i]);
+}
+
+void es50(int nums[], int size, int k) {
+	/* Scrivere un programma che sostituisce tutti i valori maggiori di un certo valore
+	 * K con l'opposto. Esempio vett= { 5,4,7,8,2,10}. K=6. Il vettore diventa
+	 * vett={5,4,-7,-8,2,-10}
+	*/
+	
+	for (int i = 0; i < size; i++)
+		if (nums[i] > k)
+			nums[i] = -nums[i];
+}
+
 int main() {}
